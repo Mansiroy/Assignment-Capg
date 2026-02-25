@@ -1,0 +1,31 @@
+package ProblemStatements;
+
+import java.util.*;
+
+
+public class GameService {
+	 static ArrayList<Game> games = new ArrayList<>();
+
+	    public GameService() {
+
+	        games.add(new Game("SnowBird", "Danny", 300));
+	        games.add(new Game("FreshFood", "Ram", 450));
+	        games.add(new Game("Batsman", "Kate", 400));
+	        games.add(new Game("Pokiman", "Steeve", 600));
+	        games.add(new Game("YammyTommy", "Narayan", 350));
+	    }
+
+	    public List<Game> viewAll() {
+	        return games;
+	    }
+
+	    public String authorSearch(String author) {
+
+	        Optional<Game> result = games.stream()
+	                .filter(g -> g.getAuthorName().equalsIgnoreCase(author))
+	                .findFirst();
+
+	        return result.map(Game::getGameName)
+	                     .orElse("NOT FOUND");
+	    }
+}
